@@ -2,9 +2,9 @@ from rdkit import Chem
 from fastapi import FastAPI, HTTPException, Depends
 from typing import List
 
-from .repositories import MoleculeRepository
-from .schemas import Molecule
-from .dependencies import get_molecule_repository
+from src.repositories import MoleculeRepository
+from src.schemas import Molecule
+from src.dependencies import get_molecule_repository
 
 app = FastAPI()
 

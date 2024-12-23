@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from .models import Molecule
+from src.models import Molecule
 
 
 class MoleculeRepository:

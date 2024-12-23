@@ -7,6 +7,8 @@ services:
       - ./src:/src
     environment:
       SERVER_ID: SERVER-1
+    env_file:
+      - database.env
     depends_on:
       - db
 
@@ -16,6 +18,8 @@ services:
       - ./src:/src
     environment:
       SERVER_ID: SERVER-2
+    env_file:
+      - database.env
     depends_on:
       - db
 
