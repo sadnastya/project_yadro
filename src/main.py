@@ -2,11 +2,12 @@ from rdkit import Chem
 from fastapi import FastAPI, HTTPException, Depends
 from typing import List
 
-from repositories import MoleculeRepository
-from schemas import Molecule
-from dependencies import get_molecule_repository
+from .repositories import MoleculeRepository
+from .schemas import Molecule
+from .dependencies import get_molecule_repository
 
 app = FastAPI()
+
 
 @app.get("/molecules", response_model=List[Molecule])
 def get_molecules(
@@ -61,6 +62,7 @@ def delete_molecule(
     repo.delete(molecule)
     return None
 
+
 @app.get("/search", response_model=List[str])
 def search_substructure(
         substructure: str,
@@ -79,10 +81,8 @@ def search_substructure(
 def substructure_search(smiles_list: List[str], substructure: str):
     molecules = [Chem.MolFromSmiles(smiles) for smiles in smiles_list]
     substructure_mol = Chem.MolFromSmiles(substructure)
-    result=[]
+    result = []
     for molecule in molecules:
         if molecule.HasSubstructMatch(substructure_mol):
             result.append(Chem.MolToSmiles(molecule))
     return result
-
-
